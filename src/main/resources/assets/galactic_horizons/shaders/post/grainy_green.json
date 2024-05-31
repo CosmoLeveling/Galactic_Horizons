@@ -1,0 +1,42 @@
+{
+  "targets": [
+    "swap",
+    "a",
+    "d"
+  ],
+  "passes": [
+    {
+      "name": "bits",
+      "intarget": "minecraft:main",
+      "outtarget": "d"
+    },
+    {
+      "name": "color_convolve",
+      "intarget": "d",
+      "outtarget": "swap",
+      "uniforms":
+      [{
+        "name": "RedMatrix",
+        "values": [ 0.0, 0.0, 0.0 ]
+      },
+        {
+          "name": "GreenMatrix",
+          "values": [ 0.3, 0.59, 0.11 ]
+        },
+        {
+          "name": "BlueMatrix",
+          "values": [ 0.0, 0.0, 0.0 ]
+        }]
+    },
+    {
+      "name": "deconverge",
+      "intarget": "swap",
+      "outtarget": "a"
+    },
+    {
+      "name": "blit",
+      "intarget": "a",
+      "outtarget": "minecraft:main"
+    }
+  ]
+}

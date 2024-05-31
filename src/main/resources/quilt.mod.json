@@ -1,0 +1,38 @@
+{
+    "schema_version": 1,
+    "quilt_loader": {
+        "group": "${group}",
+        "id": "galactic_horizons",
+        "version": "${version}",
+        "metadata": {
+            "name": "Galactic Horizons",
+            "description": "this is a mod based on space and dimensional magic",
+            "contributors": {
+                "Cosmo": "Owner"
+            },
+            "contact": {},
+            "icon": "assets/example_mod/icon.png",
+            "license": "MIT"
+        },
+        "intermediate_mappings": "net.fabricmc:intermediary",
+        "entrypoints": {
+            "init": "com.cosmo.galactic_horizons.GalacticHorizons",
+					"client_init": "com.cosmo.galactic_horizons.GalacticHorizonsClient"
+        },
+        "depends": [
+            {
+                "id": "quilt_loader",
+                "versions": ">=0.19.1"
+            },
+            {
+                "id": "quilted_fabric_api",
+                "versions": ">=7.0.2"
+            },
+            {
+                "id": "minecraft",
+                "versions": ">=1.20"
+            }
+        ]
+    },
+    "mixin": "galactic_horizons.mixins.json"
+}

@@ -1,0 +1,23 @@
+{
+  "targets": [
+    "swap",
+    "a"
+  ],
+  "passes": [
+    {
+      "name": "sobel",
+      "intarget": "minecraft:main",
+      "outtarget": "swap"
+    },
+    {
+      "name": "galactic_horizons:spectral",
+      "intarget": "swap",
+      "outtarget": "a"
+    },
+    {
+      "name": "blit",
+      "intarget": "a",
+      "outtarget": "minecraft:main"
+    }
+  ]
+}

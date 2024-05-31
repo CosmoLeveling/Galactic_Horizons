@@ -1,0 +1,7 @@
+{
+  "effect.galactic_horizons.split" : "Split",
+  "item.minecraft.potion.effect.split" : "Potion of Split",
+  "item.minecraft.splash_potion.effect.split" : "Splash Potion of Split",
+  "item.minecraft.lingering_potion.effect.split" : "Lingering Potion of Split",
+  "block.galactic_horizons.dimensional_crafter" : "Dimensional Crafter"
+}
