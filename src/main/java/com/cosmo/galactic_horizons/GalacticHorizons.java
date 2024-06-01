@@ -1,10 +1,12 @@
 package com.cosmo.galactic_horizons;
 
 import com.cosmo.galactic_horizons.block.ModBlocks;
+import com.cosmo.galactic_horizons.block.entity.ModBlockEntities;
 import com.cosmo.galactic_horizons.effect.ModEffects;
 import com.cosmo.galactic_horizons.networking.ModMessages;
 import com.cosmo.galactic_horizons.particle.ModParticles;
 import com.cosmo.galactic_horizons.potion.ModPotions;
+import com.cosmo.galactic_horizons.screen.ModScreenHandler;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
@@ -34,6 +36,8 @@ public class GalacticHorizons implements ModInitializer {
 		ModEffects.registerEffects();
 		ModBlocks.registerModBlocks();
 		ModPotions.registerPotions();
+		ModBlockEntities.registerBlockEntities();
+		ModScreenHandler.registerScreenHandlers();
 		ModParticles.registerParticles();
 		ModMessages.registerC2SPackets();
 		ServerPlayConnectionEvents.JOIN.register(((handler, sender, server) ->

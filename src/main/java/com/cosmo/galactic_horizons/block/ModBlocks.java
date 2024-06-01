@@ -1,6 +1,7 @@
 package com.cosmo.galactic_horizons.block;
 
 import com.cosmo.galactic_horizons.GalacticHorizons;
+import com.cosmo.galactic_horizons.block.custom.DimensionalCrafter;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItem;
@@ -13,7 +14,7 @@ import org.quiltmc.qsl.item.setting.api.QuiltItemSettings;
 
 public class ModBlocks {
 	public static final Block DIMENSIONAL_CRAFTER = registerBlock("dimensional_crafter",
-		new Block(QuiltBlockSettings.copyOf(Blocks.IRON_BLOCK)));
+		new DimensionalCrafter(QuiltBlockSettings.copyOf(Blocks.IRON_BLOCK)));
 
 
 
@@ -23,7 +24,9 @@ public class ModBlocks {
 	}
 
 	private static Item registerBlockItem(String name, Block block) {
-		return Registry.register(Registries.ITEM, new Identifier(GalacticHorizons.MOD_ID , name) , new BlockItem(block, new QuiltItemSettings()));
+		return Registry.register(Registries.ITEM,
+			new Identifier(GalacticHorizons.MOD_ID , name) ,
+			new BlockItem(block, new QuiltItemSettings()));
 	}
 
 	public static void registerModBlocks() {

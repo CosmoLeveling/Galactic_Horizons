@@ -4,11 +4,14 @@ import com.cosmo.galactic_horizons.effect.ModEffects;
 import com.cosmo.galactic_horizons.networking.ModMessages;
 import com.cosmo.galactic_horizons.particle.ModParticles;
 import com.cosmo.galactic_horizons.particle.custom.SplitParticle;
+import com.cosmo.galactic_horizons.screen.DimensionalCrafterScreen;
+import com.cosmo.galactic_horizons.screen.ModScreenHandler;
 import ladysnake.satin.api.event.ShaderEffectRenderCallback;
 import ladysnake.satin.api.managed.ManagedShaderEffect;
 import ladysnake.satin.api.managed.ShaderEffectManager;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.util.Identifier;
 import org.quiltmc.loader.api.ModContainer;
 import org.quiltmc.qsl.base.api.entrypoint.client.ClientModInitializer;
@@ -36,5 +39,6 @@ public class GalacticHorizonsClient implements ClientModInitializer {
 		});
 		ModMessages.registerS2CPackets();
 		ParticleFactoryRegistry.getInstance().register(ModParticles.SPLIT_PARTICLE, SplitParticle.Factory::new);
+		HandledScreens.register(ModScreenHandler.DIMENSIONAL_CRAFTER_SCREEN_HANDLER_SCREEN, DimensionalCrafterScreen::new);
 	}
 }
