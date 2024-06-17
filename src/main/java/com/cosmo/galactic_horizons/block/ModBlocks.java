@@ -15,6 +15,11 @@ import org.quiltmc.qsl.item.setting.api.QuiltItemSettings;
 public class ModBlocks {
 	public static final Block DIMENSIONAL_CRAFTER = registerBlock("dimensional_crafter",
 		new DimensionalCrafter(QuiltBlockSettings.copyOf(Blocks.IRON_BLOCK)));
+	public static final Block ETERNIUM_ORE = registerBlock("eternium_ore",
+		new Block(QuiltBlockSettings.copyOf(Blocks.IRON_ORE)));
+
+	public static final Block DEEPSLATE_ETERNIUM_ORE = registerBlock("deepslate_eternium_ore",
+		new Block(QuiltBlockSettings.copyOf(Blocks.DEEPSLATE_IRON_ORE)));
 
 
 

@@ -1,6 +1,10 @@
 package com.cosmo.galactic_horizons;
 
 import com.cosmo.galactic_horizons.effect.ModEffects;
+import com.cosmo.galactic_horizons.entity.ModEntities;
+import com.cosmo.galactic_horizons.entity.client.ModModelLayers;
+import com.cosmo.galactic_horizons.entity.client.RifterModel;
+import com.cosmo.galactic_horizons.entity.client.RifterRenderer;
 import com.cosmo.galactic_horizons.networking.ModMessages;
 import com.cosmo.galactic_horizons.particle.ModParticles;
 import com.cosmo.galactic_horizons.particle.custom.SplitParticle;
@@ -10,6 +14,8 @@ import ladysnake.satin.api.event.ShaderEffectRenderCallback;
 import ladysnake.satin.api.managed.ManagedShaderEffect;
 import ladysnake.satin.api.managed.ShaderEffectManager;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.util.Identifier;
@@ -31,14 +37,15 @@ public class GalacticHorizonsClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient(ModContainer mod) {
 		ShaderEffectRenderCallback.EVENT.register(tickDelta -> {
-			if (MinecraftClient.getInstance().player != null) {
-				if(MinecraftClient.getInstance().player.hasStatusEffect(ModEffects.SPLIT)) {
+			if (MinecraftClient.getInstance().player != null&&MinecraftClient.getInstance().player.hasStatusEffect(ModEffects.SPLIT)||MinecraftClient.getInstance().player.hasStatusEffect(ModEffects.STABLE_SPLIT)) {
 					SplitShader.render(tickDelta);
-				}
 			}
 		});
 		ModMessages.registerS2CPackets();
 		ParticleFactoryRegistry.getInstance().register(ModParticles.SPLIT_PARTICLE, SplitParticle.Factory::new);
 		HandledScreens.register(ModScreenHandler.DIMENSIONAL_CRAFTER_SCREEN_HANDLER_SCREEN, DimensionalCrafterScreen::new);
+
+		EntityRendererRegistry.register(ModEntities.RIFTER, RifterRenderer::new);
+		EntityModelLayerRegistry.registerModelLayer(ModModelLayers.RIFTER, RifterModel::getTexturedModelData);
 	}
 }

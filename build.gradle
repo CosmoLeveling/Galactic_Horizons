@@ -6,7 +6,9 @@ plugins {
 base {
 	archivesName = project.archives_base_name
 }
-
+fabricApi {
+	configureDataGeneration()
+}
 version = "$project.version+${libs.versions.minecraft.get()}"
 group = project.maven_group
 
@@ -17,7 +19,6 @@ repositories {
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
 	jcenter()
-
 	maven {
 		name = 'Ladysnake Mods'
 		url = 'https://maven.ladysnake.org/releases'

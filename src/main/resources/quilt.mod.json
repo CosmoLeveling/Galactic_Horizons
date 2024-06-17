@@ -8,7 +8,8 @@
             "name": "Galactic Horizons",
             "description": "this is a mod based on space and dimensional magic",
             "contributors": {
-                "Cosmo": "Owner"
+                "Cosmo": "Owner",
+								"Void": "Modeler/Texturer/Animator"
             },
             "contact": {},
             "icon": "assets/example_mod/icon.png",
@@ -17,7 +18,8 @@
         "intermediate_mappings": "net.fabricmc:intermediary",
         "entrypoints": {
             "init": "com.cosmo.galactic_horizons.GalacticHorizons",
-					"client_init": "com.cosmo.galactic_horizons.GalacticHorizonsClient"
+					"client_init": "com.cosmo.galactic_horizons.GalacticHorizonsClient",
+					"fabric-datagen": "com.cosmo.galactic_horizons.GalacticHorizonsDataGenerator"
         },
         "depends": [
             {

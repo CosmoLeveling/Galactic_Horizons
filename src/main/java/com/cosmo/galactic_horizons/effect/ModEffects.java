@@ -10,13 +10,19 @@ import net.minecraft.util.Identifier;
 
 public class ModEffects extends StatusEffects {
 	public static StatusEffect SPLIT;
+	public static StatusEffect STABLE_SPLIT;
 
-	public static StatusEffect registerStatusEffect(String name) {
+	public static StatusEffect registerSplitEffect(String name) {
 		return Registry.register(Registries.STATUS_EFFECT, new Identifier(GalacticHorizons.MOD_ID, name),
 			new SplitEffect(StatusEffectType.NEUTRAL, 6422641));
 	}
+	public static StatusEffect registerStableSplitEffect(String name) {
+		return Registry.register(Registries.STATUS_EFFECT, new Identifier(GalacticHorizons.MOD_ID, name),
+			new StableSplitEffect(StatusEffectType.NEUTRAL, 6422641));
+	}
 
 	public static void registerEffects() {
-		SPLIT = registerStatusEffect("split");
+		SPLIT = registerSplitEffect("split");
+		STABLE_SPLIT = registerStableSplitEffect("stablesplit");
 	}
 }

@@ -3,10 +3,15 @@ package com.cosmo.galactic_horizons;
 import com.cosmo.galactic_horizons.block.ModBlocks;
 import com.cosmo.galactic_horizons.block.entity.ModBlockEntities;
 import com.cosmo.galactic_horizons.effect.ModEffects;
+import com.cosmo.galactic_horizons.entity.ModEntities;
+import com.cosmo.galactic_horizons.entity.custom.RifterEntity;
+import com.cosmo.galactic_horizons.item.ModItems;
 import com.cosmo.galactic_horizons.networking.ModMessages;
 import com.cosmo.galactic_horizons.particle.ModParticles;
 import com.cosmo.galactic_horizons.potion.ModPotions;
 import com.cosmo.galactic_horizons.screen.ModScreenHandler;
+import com.cosmo.galactic_horizons.world.gen.ModWorldGeneration;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
@@ -38,8 +43,11 @@ public class GalacticHorizons implements ModInitializer {
 		ModPotions.registerPotions();
 		ModBlockEntities.registerBlockEntities();
 		ModScreenHandler.registerScreenHandlers();
+		ModWorldGeneration.generateModWorldGen();
 		ModParticles.registerParticles();
+		FabricDefaultAttributeRegistry.register(ModEntities.RIFTER, RifterEntity.createRifterAttributes());
 		ModMessages.registerC2SPackets();
+		ModItems.registerModItems();
 		ServerPlayConnectionEvents.JOIN.register(((handler, sender, server) ->
 		{
 			if(server != null){

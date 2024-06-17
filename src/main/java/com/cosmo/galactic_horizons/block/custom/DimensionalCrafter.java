@@ -70,6 +70,8 @@ public class DimensionalCrafter extends BlockWithEntity implements BlockEntityPr
 		return ActionResult.SUCCESS;
 	}
 
+
+
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {

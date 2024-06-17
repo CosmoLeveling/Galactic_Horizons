@@ -1,5 +1,6 @@
 package com.cosmo.galactic_horizons.block.entity;
 
+import com.cosmo.galactic_horizons.effect.ModEffects;
 import com.cosmo.galactic_horizons.potion.ModPotions;
 import com.cosmo.galactic_horizons.screen.DimensionalCrafterScreenHandler;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
@@ -29,14 +30,15 @@ public class DimensionalCrafterBlockEntity extends BlockEntity implements Extend
 
 	private static final int INPUT_SLOT = 0;
 	private static final int INPUT_SLOT1 = 1;
-	private static final int INPUT_SLOT2 = 2;
+	private static final int INPUT_SLOT2 = 4;
 	private static final int INPUT_SLOT3 = 3;
-	private static final int CENTER_SLOT = 4;
+	private static final int CENTER_SLOT = 2;
 	private static final int OUTPUT_SLOT = 5;
 
 	protected final PropertyDelegate propertyDelegate;
 	private int progress = 0;
 	private int maxProgress = 72;
+	private int dimension = 1;
 
 	public DimensionalCrafterBlockEntity(BlockPos pos, BlockState state) {
 		super(ModBlockEntities.DIMENSIONAL_CRAFTER_BLOCK_ENTITY, pos, state);
@@ -92,11 +94,17 @@ public class DimensionalCrafterBlockEntity extends BlockEntity implements Extend
 	@Nullable
 	@Override
 	public ScreenHandler createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
+		if (playerEntity.hasStatusEffect(ModEffects.SPLIT)||playerEntity.hasStatusEffect(ModEffects.STABLE_SPLIT)){
+			dimension = 1;
+		}else {
+			dimension=0;
+		}
 		return new DimensionalCrafterScreenHandler(i,playerInventory, (BlockEntity) this, this.propertyDelegate);
 	}
 
 	public void tick(World world, BlockPos pos, BlockState state){
 		if(world.isClient()) {
+
 			return;
 		}
 
@@ -129,7 +137,7 @@ public class DimensionalCrafterBlockEntity extends BlockEntity implements Extend
 		this.removeStack(INPUT_SLOT2,1);
 		this.removeStack(INPUT_SLOT3,1);
 		this.removeStack(CENTER_SLOT,1);
-		ItemStack result = new ItemStack(Items.ACACIA_DOOR);
+		ItemStack result = new ItemStack(Items.BARRIER);
 
 		this.setStack(OUTPUT_SLOT,new ItemStack(result.getItem(), getStack(OUTPUT_SLOT).getCount() + result.getCount()));
 	}
@@ -143,10 +151,9 @@ public class DimensionalCrafterBlockEntity extends BlockEntity implements Extend
 	}
 
 	private boolean hasRecipe() {
-		ItemStack result = new ItemStack(Items.ACACIA_DOOR);
-		boolean hasInput = getStack(INPUT_SLOT).getItem() == Items.ACACIA_DOOR && getStack(INPUT_SLOT1).getItem() == Items.ACACIA_DOOR && getStack(INPUT_SLOT2).getItem() == Items.ACACIA_DOOR && getStack(INPUT_SLOT3).getItem() == Items.ACACIA_DOOR && getStack(CENTER_SLOT).getItem() == Items.ACACIA_DOOR;
-
-		return hasInput && canInsertAmountIntoOutputSlot(result) && canInserItemIntoOutputSlot(result.getItem());
+		ItemStack result = new ItemStack(Items.BARRIER);
+		boolean hasInput = getStack(INPUT_SLOT).getItem() == Items.DIRT && getStack(INPUT_SLOT1).getItem() == Items.DIRT && getStack(INPUT_SLOT2).isEmpty() && getStack(INPUT_SLOT3).isEmpty() && getStack(CENTER_SLOT).getItem() == Items.DIRT;
+		return dimension==1 && hasInput && canInsertAmountIntoOutputSlot(result) && canInserItemIntoOutputSlot(result.getItem());
 	}
 
 	private boolean canInserItemIntoOutputSlot(Item item) {

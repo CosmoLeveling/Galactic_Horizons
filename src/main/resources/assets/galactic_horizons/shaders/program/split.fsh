@@ -6,8 +6,8 @@ uniform vec4 ColorModulate;
 
 in vec2 texCoord;
 
-vec3 colorA = vec3(1, 1, 1);
-vec3 colorB = vec3(1, 0, 0);
+vec3 colorA = vec3(0, 0, 4);
+vec3 colorB = vec3(4, 0, 0);
 
 uniform vec2 OutSize;
 
