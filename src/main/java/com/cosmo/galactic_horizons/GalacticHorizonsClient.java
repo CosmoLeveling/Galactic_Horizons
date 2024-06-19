@@ -7,7 +7,7 @@ import com.cosmo.galactic_horizons.entity.client.RifterModel;
 import com.cosmo.galactic_horizons.entity.client.RifterRenderer;
 import com.cosmo.galactic_horizons.networking.ModMessages;
 import com.cosmo.galactic_horizons.particle.ModParticles;
-import com.cosmo.galactic_horizons.particle.custom.SplitParticle;
+import com.cosmo.galactic_horizons.particle.custom.RealityParticle;
 import com.cosmo.galactic_horizons.screen.DimensionalCrafterScreen;
 import com.cosmo.galactic_horizons.screen.ModScreenHandler;
 import ladysnake.satin.api.event.ShaderEffectRenderCallback;
@@ -37,12 +37,12 @@ public class GalacticHorizonsClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient(ModContainer mod) {
 		ShaderEffectRenderCallback.EVENT.register(tickDelta -> {
-			if (MinecraftClient.getInstance().player != null&&MinecraftClient.getInstance().player.hasStatusEffect(ModEffects.SPLIT)||MinecraftClient.getInstance().player.hasStatusEffect(ModEffects.STABLE_SPLIT)) {
+			if (MinecraftClient.getInstance().player != null&&MinecraftClient.getInstance().player.hasStatusEffect(ModEffects.REALITY_TEAR)||MinecraftClient.getInstance().player.hasStatusEffect(ModEffects.REALITY_SPLIT)) {
 					SplitShader.render(tickDelta);
 			}
 		});
 		ModMessages.registerS2CPackets();
-		ParticleFactoryRegistry.getInstance().register(ModParticles.SPLIT_PARTICLE, SplitParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(ModParticles.REALITY_PARTICLE, RealityParticle.Factory::new);
 		HandledScreens.register(ModScreenHandler.DIMENSIONAL_CRAFTER_SCREEN_HANDLER_SCREEN, DimensionalCrafterScreen::new);
 
 		EntityRendererRegistry.register(ModEntities.RIFTER, RifterRenderer::new);

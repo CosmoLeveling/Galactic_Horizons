@@ -20,6 +20,7 @@ public class ModBlocks {
 
 	public static final Block DEEPSLATE_ETERNIUM_ORE = registerBlock("deepslate_eternium_ore",
 		new Block(QuiltBlockSettings.copyOf(Blocks.DEEPSLATE_IRON_ORE)));
+	public static final Block END_ETERNIUM_ORE = registerBlock("end_eternium_ore", new Block(QuiltBlockSettings.copyOf(Blocks.END_STONE)));
 
 
 

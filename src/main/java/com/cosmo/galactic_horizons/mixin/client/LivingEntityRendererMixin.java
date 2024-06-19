@@ -1,6 +1,6 @@
 package com.cosmo.galactic_horizons.mixin.client;
 
-import com.cosmo.galactic_horizons.GalacticHorizonsClient;
+import com.cosmo.galactic_horizons.effect.ModEffects;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.LivingEntityRenderer;
 import net.minecraft.client.util.math.MatrixStack;
@@ -15,7 +15,7 @@ public abstract class LivingEntityRendererMixin {
 	@Inject(method = "render(Lnet/minecraft/entity/LivingEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V", at = @At("HEAD"),cancellable = true)
 	private void invisibleRender(LivingEntity entity, float f, float g, MatrixStack matrixStack,
 								 VertexConsumerProvider vertexConsumerProvider, int i, CallbackInfo ci) {
-		if (entity != null && GalacticHorizonsClient.entities.contains(entity.getUuid())){
+		if (entity.getStatusEffects() != null && entity.hasStatusEffect(ModEffects.REALITY_TEAR)||entity.hasStatusEffect(ModEffects.REALITY_SPLIT)){
 			ci.cancel();
 		}
 	}

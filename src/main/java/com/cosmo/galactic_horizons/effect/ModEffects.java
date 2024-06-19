@@ -9,20 +9,20 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class ModEffects extends StatusEffects {
-	public static StatusEffect SPLIT;
-	public static StatusEffect STABLE_SPLIT;
+	public static StatusEffect REALITY_TEAR;
+	public static StatusEffect REALITY_SPLIT;
 
-	public static StatusEffect registerSplitEffect(String name) {
+	public static StatusEffect registerRealityTearEffect(String name) {
 		return Registry.register(Registries.STATUS_EFFECT, new Identifier(GalacticHorizons.MOD_ID, name),
-			new SplitEffect(StatusEffectType.NEUTRAL, 6422641));
+			new RealitySplitEffect(StatusEffectType.NEUTRAL, 6422641));
 	}
-	public static StatusEffect registerStableSplitEffect(String name) {
+	public static StatusEffect registerRealitySplitEffect(String name) {
 		return Registry.register(Registries.STATUS_EFFECT, new Identifier(GalacticHorizons.MOD_ID, name),
-			new StableSplitEffect(StatusEffectType.NEUTRAL, 6422641));
+			new RealityTearEffect(StatusEffectType.NEUTRAL, 6422641));
 	}
 
 	public static void registerEffects() {
-		SPLIT = registerSplitEffect("split");
-		STABLE_SPLIT = registerStableSplitEffect("stablesplit");
+		REALITY_SPLIT = registerRealityTearEffect("reality_split");
+		REALITY_TEAR = registerRealitySplitEffect("reality_tear");
 	}
 }

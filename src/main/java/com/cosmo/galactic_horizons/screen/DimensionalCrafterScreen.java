@@ -1,11 +1,16 @@
 package com.cosmo.galactic_horizons.screen;
 
 import com.cosmo.galactic_horizons.GalacticHorizons;
+import com.cosmo.galactic_horizons.block.entity.DimensionalCrafterBlockEntity;
+import com.cosmo.galactic_horizons.effect.ModEffects;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
+import net.minecraft.client.gui.tooltip.Tooltip;
+import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
@@ -15,14 +20,18 @@ public class DimensionalCrafterScreen extends HandledScreen<DimensionalCrafterSc
 	public DimensionalCrafterScreen(DimensionalCrafterScreenHandler handler, PlayerInventory inventory, Text title) {
 		super(handler, inventory, title);
 	}
-
+	public ButtonWidget button1;
 	@Override
 	protected void init() {
+		button1 = ButtonWidget.builder(Text.literal("Button 1"), button -> {
+				this.handler.setDim(1);
+		}).positionAndSize(width / 2 - 205, 20, 200, 20)
+			.tooltip(Tooltip.create(Text.literal("Tooltip of button1"))).build();
 		super.init();
 		titleY = 1000;
 		playerInventoryTitleY = 1000;
+		addDrawableChild(button1);
 	}
-
 	@Override
 	protected void drawBackground(GuiGraphics context, float delta, int mouseX, int mouseY) {
 		RenderSystem.setShader(GameRenderer::getPositionTexShader);

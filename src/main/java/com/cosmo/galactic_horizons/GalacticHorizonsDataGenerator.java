@@ -1,9 +1,6 @@
 package com.cosmo.galactic_horizons;
 
-import com.cosmo.galactic_horizons.datagen.ModBlockTagProvider;
-import com.cosmo.galactic_horizons.datagen.ModLootTableProvider;
-import com.cosmo.galactic_horizons.datagen.ModModelProvider;
-import com.cosmo.galactic_horizons.datagen.ModWorldGenerator;
+import com.cosmo.galactic_horizons.datagen.*;
 import com.cosmo.galactic_horizons.world.ModConfiguredFeatures;
 import com.cosmo.galactic_horizons.world.ModPlacedFeatures;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
@@ -19,6 +16,7 @@ public class GalacticHorizonsDataGenerator implements DataGeneratorEntrypoint {
 		pack.addProvider(ModModelProvider::new);
 		pack.addProvider(ModLootTableProvider::new);
 		pack.addProvider(ModBlockTagProvider::new);
+		pack.addProvider(ModEnUsProvider::new);
 	}
 
 	@Override

@@ -20,6 +20,7 @@ import java.util.List;
 
 public class ModConfiguredFeatures {
 	public static final RegistryKey<ConfiguredFeature<?,?>> ETERNIUM_ORE_KEY = registryKey("eternium_ore");
+	public static final RegistryKey<ConfiguredFeature<?,?>> END_ETERNIUM_ORE_KEY = registryKey("end_eternium_ore");
 
 	public static void bootstrap(BootstrapContext<ConfiguredFeature<?,?>> context) {
 		RuleTest stoneReplaceables = new TagMatchRuleTest(BlockTags.STONE_ORE_REPLACEABLES);
@@ -29,8 +30,11 @@ public class ModConfiguredFeatures {
 		List<OreFeatureConfig.Target> overworldEterniumOre =
 			List.of(OreFeatureConfig.createTarget(stoneReplaceables, ModBlocks.ETERNIUM_ORE.getDefaultState()),
 					OreFeatureConfig.createTarget(deepslateReplaceables,ModBlocks.DEEPSLATE_ETERNIUM_ORE.getDefaultState()));
+		List<OreFeatureConfig.Target> endEterniumOre =
+			List.of(OreFeatureConfig.createTarget(endReplaceables, ModBlocks.END_ETERNIUM_ORE.getDefaultState()));
 
 		register(context, ETERNIUM_ORE_KEY,Feature.ORE, new OreFeatureConfig(overworldEterniumOre,6,0.5f));
+		register(context, END_ETERNIUM_ORE_KEY,Feature.ORE, new OreFeatureConfig(endEterniumOre,6,0.5f));
 	}
 
 	public static RegistryKey<ConfiguredFeature<?, ?>> registryKey(String name) {

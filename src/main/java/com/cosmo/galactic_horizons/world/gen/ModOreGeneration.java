@@ -7,7 +7,7 @@ import org.quiltmc.qsl.worldgen.biome.api.BiomeSelectors;
 
 public class ModOreGeneration {
 	public static void generateOres() {
-		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
-			GenerationStep.Feature.UNDERGROUND_ORES, ModPlacedFeatures.ETERNIUM_ORE_PLACED_KEY);
+		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, ModPlacedFeatures.ETERNIUM_ORE_PLACED_KEY);
+		BiomeModifications.addFeature(BiomeSelectors.foundInTheEnd(), GenerationStep.Feature.UNDERGROUND_ORES, ModPlacedFeatures.END_ETERNIUM_ORE_PLACED_KEY);
 	}
 }

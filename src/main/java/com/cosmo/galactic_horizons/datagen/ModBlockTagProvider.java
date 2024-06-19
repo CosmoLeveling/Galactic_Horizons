@@ -18,10 +18,12 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 		getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
 			.add(ModBlocks.DEEPSLATE_ETERNIUM_ORE)
 			.add(ModBlocks.ETERNIUM_ORE)
+			.add(ModBlocks.END_ETERNIUM_ORE)
 			.add(ModBlocks.DIMENSIONAL_CRAFTER);
 		getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)
 			.add(ModBlocks.DIMENSIONAL_CRAFTER)
 			.add(ModBlocks.ETERNIUM_ORE)
+			.add(ModBlocks.END_ETERNIUM_ORE)
 			.add(ModBlocks.DEEPSLATE_ETERNIUM_ORE);
 	}
 }

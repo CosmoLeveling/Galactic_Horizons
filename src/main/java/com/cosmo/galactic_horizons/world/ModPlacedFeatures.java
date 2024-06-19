@@ -16,6 +16,7 @@ import java.util.List;
 
 public class ModPlacedFeatures {
 	public static final RegistryKey<PlacedFeature> ETERNIUM_ORE_PLACED_KEY = registerKey("eternium_ore_placed");
+	public static final RegistryKey<PlacedFeature> END_ETERNIUM_ORE_PLACED_KEY = registerKey("end_eternium_ore_placed");
 
 	public static void bootstrap(BootstrapContext<PlacedFeature> context) {
 		var configuredFeatureRegistryEntryLookup = context.lookup(RegistryKeys.CONFIGURED_FEATURE);
@@ -23,6 +24,9 @@ public class ModPlacedFeatures {
 		register(context, ETERNIUM_ORE_PLACED_KEY, configuredFeatureRegistryEntryLookup.getHolderOrThrow(ModConfiguredFeatures.ETERNIUM_ORE_KEY),
 			ModOrePlacement.commonOrePlacementModifiers(6,
 				HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-80), YOffset.aboveBottom(80))));
+		register(context, END_ETERNIUM_ORE_PLACED_KEY, configuredFeatureRegistryEntryLookup.getHolderOrThrow(ModConfiguredFeatures.END_ETERNIUM_ORE_KEY),
+			ModOrePlacement.commonOrePlacementModifiers(6,
+				HeightRangePlacementModifier.createUniform(YOffset.fixed(-80), YOffset.fixed(80))));
 	}
 
 	public static RegistryKey<PlacedFeature> registerKey(String name) {

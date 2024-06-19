@@ -6,9 +6,9 @@ import net.minecraft.particle.DefaultParticleType;
 import org.jetbrains.annotations.Nullable;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
 
-public class SplitParticle extends SpriteBillboardParticle {
-	protected SplitParticle(ClientWorld level, double xCoord, double yCoord, double zCoord,
-							SpriteProvider spriteSet, double xd, double yd, double zd) {
+public class RealityParticle extends SpriteBillboardParticle {
+	protected RealityParticle(ClientWorld level, double xCoord, double yCoord, double zCoord,
+							  SpriteProvider spriteSet, double xd, double yd, double zd) {
 		super(level, xCoord, yCoord, zCoord, xd, yd, zd);
 
 		this.velocityMultiplier = 0.6F;
@@ -50,7 +50,7 @@ public class SplitParticle extends SpriteBillboardParticle {
 		@Nullable
 		@Override
 		public Particle createParticle(DefaultParticleType particleType, ClientWorld level, double x, double y, double z, double dx, double dy, double dz) {
-			return new SplitParticle(level,x,y,z,this.sprites,dx,dy,dz);
+			return new RealityParticle(level,x,y,z,this.sprites,dx,dy,dz);
 		}
 	}
 }

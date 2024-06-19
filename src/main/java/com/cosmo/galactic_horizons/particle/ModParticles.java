@@ -9,10 +9,10 @@ import net.minecraft.util.Identifier;
 
 
 public class ModParticles {
-	public static final DefaultParticleType SPLIT_PARTICLE = FabricParticleTypes.simple();
+	public static final DefaultParticleType REALITY_PARTICLE = FabricParticleTypes.simple();
 
 	public static void registerParticles() {
-		Registry.register(Registries.PARTICLE_TYPE,new Identifier(GalacticHorizons.MOD_ID,"split_particle"),
-			SPLIT_PARTICLE);
+		Registry.register(Registries.PARTICLE_TYPE,new Identifier(GalacticHorizons.MOD_ID,"reality_particle"),
+			REALITY_PARTICLE);
 	}
 }

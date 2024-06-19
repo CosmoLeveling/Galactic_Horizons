@@ -57,7 +57,7 @@ public class GalacticHorizons implements ModInitializer {
 			}
 		}));
 		ServerEntityLoadEvents.AFTER_LOAD.register((entity, world) -> {
-			if(entity instanceof LivingEntity livingEntity && livingEntity.hasStatusEffect(ModEffects.SPLIT)&&entity.getServer()!=null){
+			if(entity instanceof LivingEntity livingEntity && livingEntity.hasStatusEffect(ModEffects.REALITY_TEAR)&&entity.getServer()!=null){
 				PacketByteBuf buf = PacketByteBufs.create();
 				buf.writeUuid(livingEntity.getUuid());
 				livingEntities.add(livingEntity.getUuid());

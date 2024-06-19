@@ -2,6 +2,7 @@ package com.cosmo.galactic_horizons.block.entity;
 
 import com.cosmo.galactic_horizons.effect.ModEffects;
 import com.cosmo.galactic_horizons.potion.ModPotions;
+import com.cosmo.galactic_horizons.screen.DimensionalCrafterScreen;
 import com.cosmo.galactic_horizons.screen.DimensionalCrafterScreenHandler;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
@@ -15,9 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.screen.ArrayPropertyDelegate;
-import net.minecraft.screen.PropertyDelegate;
-import net.minecraft.screen.ScreenHandler;
+import net.minecraft.screen.*;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
@@ -38,10 +37,11 @@ public class DimensionalCrafterBlockEntity extends BlockEntity implements Extend
 	protected final PropertyDelegate propertyDelegate;
 	private int progress = 0;
 	private int maxProgress = 72;
-	private int dimension = 1;
+	public net.minecraft.screen.Property dimension= Property.create();
 
 	public DimensionalCrafterBlockEntity(BlockPos pos, BlockState state) {
 		super(ModBlockEntities.DIMENSIONAL_CRAFTER_BLOCK_ENTITY, pos, state);
+
 		this.propertyDelegate = new PropertyDelegate() {
 			@Override
 			public int get(int index) {
@@ -59,7 +59,6 @@ public class DimensionalCrafterBlockEntity extends BlockEntity implements Extend
 					case 1 -> DimensionalCrafterBlockEntity.this.maxProgress =value;
 				}
 			}
-
 			@Override
 			public int size() {
 				return 2;
@@ -94,14 +93,8 @@ public class DimensionalCrafterBlockEntity extends BlockEntity implements Extend
 	@Nullable
 	@Override
 	public ScreenHandler createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-		if (playerEntity.hasStatusEffect(ModEffects.SPLIT)||playerEntity.hasStatusEffect(ModEffects.STABLE_SPLIT)){
-			dimension = 1;
-		}else {
-			dimension=0;
-		}
-		return new DimensionalCrafterScreenHandler(i,playerInventory, (BlockEntity) this, this.propertyDelegate);
+		return new DimensionalCrafterScreenHandler(i,playerInventory, (BlockEntity) this, this.propertyDelegate, ScreenHandlerContext.create(world,pos));
 	}
-
 	public void tick(World world, BlockPos pos, BlockState state){
 		if(world.isClient()) {
 
@@ -152,10 +145,10 @@ public class DimensionalCrafterBlockEntity extends BlockEntity implements Extend
 
 	private boolean hasRecipe() {
 		ItemStack result = new ItemStack(Items.BARRIER);
+		System.out.println(this.dimension.get());
 		boolean hasInput = getStack(INPUT_SLOT).getItem() == Items.DIRT && getStack(INPUT_SLOT1).getItem() == Items.DIRT && getStack(INPUT_SLOT2).isEmpty() && getStack(INPUT_SLOT3).isEmpty() && getStack(CENTER_SLOT).getItem() == Items.DIRT;
-		return dimension==1 && hasInput && canInsertAmountIntoOutputSlot(result) && canInserItemIntoOutputSlot(result.getItem());
+		return this.dimension.get() == 1&&hasInput && canInsertAmountIntoOutputSlot(result) && canInserItemIntoOutputSlot(result.getItem());
 	}
-
 	private boolean canInserItemIntoOutputSlot(Item item) {
 		return this.getStack(OUTPUT_SLOT).getItem() == item || this.getStack(OUTPUT_SLOT).isEmpty();
 	}
@@ -167,7 +160,6 @@ public class DimensionalCrafterBlockEntity extends BlockEntity implements Extend
 	private boolean isOutputSlotEmptyOrReceivable() {
 		return this.getStack(OUTPUT_SLOT).isEmpty() || this.getStack(OUTPUT_SLOT).getCount() < this.getStack(OUTPUT_SLOT).getMaxCount();
 	}
-
 	@Override
 	public DefaultedList<ItemStack> getItems() {
 		return inventory;
