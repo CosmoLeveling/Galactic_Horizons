@@ -2,7 +2,6 @@ package com.cosmo.galactic_horizons.datagen;
 
 import com.cosmo.galactic_horizons.block.ModBlocks;
 import com.cosmo.galactic_horizons.item.ModItems;
-import com.cosmo.galactic_horizons.particle.ModParticles;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.client.ItemModelGenerator;
@@ -28,6 +27,11 @@ public class ModModelProvider extends FabricModelProvider {
 	@Override
 	public void generateItemModels(ItemModelGenerator itemModelGenerator) {
 		itemModelGenerator.register(ModItems.RAW_ETERNIUM, Models.SINGLE_LAYER_ITEM);
+		itemModelGenerator.register(ModItems.ETERNIUM_INGOT, Models.SINGLE_LAYER_ITEM);
+		itemModelGenerator.register(ModItems.ETERNIUM_HELMET, Models.SINGLE_LAYER_ITEM);
+		itemModelGenerator.register(ModItems.ETERNIUM_CHESTPLATE, Models.SINGLE_LAYER_ITEM);
+		itemModelGenerator.register(ModItems.ETERNIUM_LEGGINGS, Models.SINGLE_LAYER_ITEM);
+		itemModelGenerator.register(ModItems.ETERNIUM_BOOTS, Models.SINGLE_LAYER_ITEM);
 		itemModelGenerator.register(ModItems.Stable_Corrupted_Chorus, Models.SINGLE_LAYER_ITEM);
 		itemModelGenerator.register(ModItems.Corrupted_Chorus, Models.SINGLE_LAYER_ITEM);
 		itemModelGenerator.register(ModItems.RIFTER_SPAWN_EGG,

@@ -101,13 +101,7 @@ public class DimensionalCrafterScreenHandler extends ScreenHandler {
 
 	public void setDim(int Value) {
 		System.out.println(Value);
-		context.get(World::getBlockEntity)
-			.ifPresent(worldBlockEntity -> {
-				if (worldBlockEntity instanceof DimensionalCrafterBlockEntity dimensionalCrafterBlockEntity) {
-					dimensionalCrafterBlockEntity.dimension.set(Value);;
-					dimensionalCrafterBlockEntity.markDirty();
-				}
-			});
+		this.setProperty(2,1);
 		System.out.println(this.blockEntity.dimension);
 	}
 }
