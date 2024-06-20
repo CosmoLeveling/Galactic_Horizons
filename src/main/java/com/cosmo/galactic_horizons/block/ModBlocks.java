@@ -2,7 +2,6 @@ package com.cosmo.galactic_horizons.block;
 
 import com.cosmo.galactic_horizons.GalacticHorizons;
 import com.cosmo.galactic_horizons.block.custom.DimensionalCrafter;
-import com.cosmo.galactic_horizons.block.custom.RealityStabilizer;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItem;
@@ -18,8 +17,7 @@ public class ModBlocks {
 		new DimensionalCrafter(QuiltBlockSettings.copyOf(Blocks.IRON_BLOCK)));
 	public static final Block ETERNIUM_ORE = registerBlock("eternium_ore",
 		new Block(QuiltBlockSettings.copyOf(Blocks.IRON_ORE)));
-	public static final Block REALITY_STABILIZER = registerBlock("reality_stabilizer",
-		new RealityStabilizer(QuiltBlockSettings.copyOf(Blocks.CONDUIT)));
+
 	public static final Block DEEPSLATE_ETERNIUM_ORE = registerBlock("deepslate_eternium_ore",
 		new Block(QuiltBlockSettings.copyOf(Blocks.DEEPSLATE_IRON_ORE)));
 	public static final Block END_ETERNIUM_ORE = registerBlock("end_eternium_ore", new Block(QuiltBlockSettings.copyOf(Blocks.END_STONE)));

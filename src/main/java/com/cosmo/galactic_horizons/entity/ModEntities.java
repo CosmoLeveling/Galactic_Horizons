@@ -11,9 +11,8 @@ import net.minecraft.util.Identifier;
 import org.quiltmc.qsl.entity.api.QuiltEntityTypeBuilder;
 
 public class ModEntities {
-public static final EntityType<RifterEntity> RIFTER = Registry.register(Registries.ENTITY_TYPE,
-	new Identifier(GalacticHorizons.MOD_ID,"rifter"),
-	QuiltEntityTypeBuilder.create(SpawnGroup.MONSTER,RifterEntity::new)
-		.setDimensions(EntityDimensions.fixed(.65f,2.9f)).build());
-
+	public static final EntityType<RifterEntity> RIFTER = Registry.register(Registries.ENTITY_TYPE,
+		new Identifier(GalacticHorizons.MOD_ID,"rifter"),
+		QuiltEntityTypeBuilder.create(SpawnGroup.MONSTER,RifterEntity::new)
+			.setDimensions(EntityDimensions.fixed(.65f,2.9f)).build());
 }

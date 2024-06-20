@@ -25,10 +25,5 @@ public class ModEnUsProvider extends FabricLanguageProvider {
 		translationBuilder.add(ModEntities.RIFTER, "Rifter");
 		translationBuilder.add(ModEffects.REALITY_SPLIT, "Reality Split");
 		translationBuilder.add(ModEffects.REALITY_TEAR, "Reality Tear");
-		translationBuilder.add(ModItems.ETERNIUM_INGOT, "Eternium Ingot");
-		translationBuilder.add(ModItems.ETERNIUM_HELMET, "Eternium Helmet");
-		translationBuilder.add(ModItems.ETERNIUM_CHESTPLATE, "Eternium Chestplate");
-		translationBuilder.add(ModItems.ETERNIUM_LEGGINGS, "Eternium Leggings");
-		translationBuilder.add(ModItems.ETERNIUM_BOOTS, "Eternium Boots");
 	}
 }

@@ -4,9 +4,12 @@ import com.cosmo.galactic_horizons.entity.animation.ModAnimations;
 import com.cosmo.galactic_horizons.entity.custom.RifterEntity;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.*;
+import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.render.entity.model.SinglePartEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.MathHelper;
+
+import javax.swing.text.html.parser.Entity;
 
 // Made with Blockbench 4.10.3
 // Exported for Minecraft version 1.17+ for Yarn
@@ -14,7 +17,6 @@ import net.minecraft.util.math.MathHelper;
 public class RifterModel<T extends RifterEntity> extends SinglePartEntityModel<T> {
 	private final ModelPart Rifter;
 	private final ModelPart Head;
-	private boolean started;
 	public RifterModel(ModelPart root) {
 		this.Rifter = root.getChild("Rifter");
 		this.Head = Rifter.getChild("Body").getChild("Head");
@@ -52,13 +54,7 @@ public class RifterModel<T extends RifterEntity> extends SinglePartEntityModel<T
 		this.getPart().traverse().forEach(ModelPart::resetTransform);
 		this.setHeadAngles(netHeadYaw,headPitch);
 		this.animate(entity.idleAnimationState, ModAnimations.RIFTER_IDLE,ageInTicks,1f);
-		if(entity.ChaseingAnimationState.isAnimating()&& !started) {
-			this.animate(entity.ChaseingAnimationState, ModAnimations.RIFTER_CHASE_START, ageInTicks, 1f);
-			this.started=true;
-		}
-		if(entity.ChaseingAnimationState.isAnimating()&& started) {
-			this.animate(entity.ChaseingAnimationState, ModAnimations.RIFTER_CHASE_LOOP, ageInTicks, 1f);
-		}
+		this.animate(entity.ChaseingAnimationState, ModAnimations.RIFTER_CHASE_LOOP,ageInTicks,1f);
 	}
 
 	private void setHeadAngles(float headYaw,float headPitch) {

@@ -1,29 +1,29 @@
 package com.cosmo.galactic_horizons.entity.custom;
 
-import net.minecraft.block.BlockState;
+import com.cosmo.galactic_horizons.effect.ModEffects;
 import net.minecraft.entity.AnimationState;
 import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
+import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.passive.PigEntity;
-import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.EntityView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class RifterEntity extends TameableEntity {
+public class RifterEntity extends HostileEntity {
 
 	public final AnimationState idleAnimationState = new AnimationState();
 	public final AnimationState ChaseingAnimationState = new AnimationState();
@@ -33,7 +33,7 @@ public class RifterEntity extends TameableEntity {
 	private int chaseingAnimationTimeout = 0;
 	public static LivingEntity targ;
 
-	public RifterEntity(EntityType<? extends TameableEntity> entityType, World world) {
+	public RifterEntity(EntityType<? extends HostileEntity> entityType, World world) {
 		super(entityType, world);
 	}
 
@@ -48,7 +48,7 @@ public class RifterEntity extends TameableEntity {
 			this.ChaseingAnimationState.restart(this.age);
 		}else {
 			if (this.idleAnimationTimeout <= 0) {
-				this.idleAnimationTimeout = 30;
+				this.idleAnimationTimeout = this.random.nextInt(40) + 80;
 				this.idleAnimationState.restart(this.age);
 			} else {
 				--this.idleAnimationTimeout;
@@ -68,24 +68,11 @@ public class RifterEntity extends TameableEntity {
 	}
 
 	@Override
-	public void tickMovement() {
-		super.tickMovement();
-		Vec3d vec3d = this.getVelocity();
-		if (!this.isOnGround() && vec3d.y < 0.0) {
-			this.setVelocity(vec3d.multiply(1.0, 0.6, 1.0));
-		}
-	}
-
-	@Override
 	public void tick() {
 		super.tick();
 		if(this.getWorld().isClient){
 			setupAnimationStates();
 		}
-	}
-
-	@Override
-	protected void fall(double fallDistance, boolean onGround, BlockState landedState, BlockPos landedPosition) {
 	}
 
 	@Override
@@ -127,16 +114,5 @@ public class RifterEntity extends TameableEntity {
 	@Override
 	protected SoundEvent getDeathSound() {
 		return SoundEvents.ENTITY_ENDERMAN_DEATH;
-	}
-
-	@Override
-	public EntityView getEntityView() {
-		return null;
-	}
-
-	@Nullable
-	@Override
-	public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
-		return null;
 	}
 }

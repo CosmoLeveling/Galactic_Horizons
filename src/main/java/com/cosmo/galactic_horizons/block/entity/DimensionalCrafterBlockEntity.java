@@ -34,10 +34,10 @@ public class DimensionalCrafterBlockEntity extends BlockEntity implements Extend
 	private static final int CENTER_SLOT = 2;
 	private static final int OUTPUT_SLOT = 5;
 
-	public final PropertyDelegate propertyDelegate;
+	protected final PropertyDelegate propertyDelegate;
 	private int progress = 0;
 	private int maxProgress = 72;
-	public int dimension;
+	public net.minecraft.screen.Property dimension= Property.create();
 
 	public DimensionalCrafterBlockEntity(BlockPos pos, BlockState state) {
 		super(ModBlockEntities.DIMENSIONAL_CRAFTER_BLOCK_ENTITY, pos, state);
@@ -48,7 +48,6 @@ public class DimensionalCrafterBlockEntity extends BlockEntity implements Extend
 				return switch (index){
 					case 0 -> DimensionalCrafterBlockEntity.this.progress;
 					case 1 -> DimensionalCrafterBlockEntity.this.maxProgress;
-					case 2 -> DimensionalCrafterBlockEntity.this.dimension;
 					default -> 0;
 				};
 			}
@@ -57,8 +56,7 @@ public class DimensionalCrafterBlockEntity extends BlockEntity implements Extend
 			public void set(int index, int value) {
 				switch (index) {
 					case 0 -> DimensionalCrafterBlockEntity.this.progress = value;
-					case 1 -> DimensionalCrafterBlockEntity.this.maxProgress = value;
-					case 2 -> DimensionalCrafterBlockEntity.this.dimension = value;
+					case 1 -> DimensionalCrafterBlockEntity.this.maxProgress =value;
 				}
 			}
 			@Override
@@ -99,11 +97,10 @@ public class DimensionalCrafterBlockEntity extends BlockEntity implements Extend
 	}
 	public void tick(World world, BlockPos pos, BlockState state){
 		if(world.isClient()) {
+
 			return;
 		}
-		if(this.getStack(INPUT_SLOT).getItem() == Items.DIRT){
-			dimension = 1;
-		}
+
 		if(isOutputSlotEmptyOrReceivable()){
 			if(this.hasRecipe()){
 				this.increaceCraftProgress();
@@ -148,9 +145,9 @@ public class DimensionalCrafterBlockEntity extends BlockEntity implements Extend
 
 	private boolean hasRecipe() {
 		ItemStack result = new ItemStack(Items.BARRIER);
-		System.out.println(this.dimension);
+		System.out.println(this.dimension.get());
 		boolean hasInput = getStack(INPUT_SLOT).getItem() == Items.DIRT && getStack(INPUT_SLOT1).getItem() == Items.DIRT && getStack(INPUT_SLOT2).isEmpty() && getStack(INPUT_SLOT3).isEmpty() && getStack(CENTER_SLOT).getItem() == Items.DIRT;
-		return this.dimension == 1&&hasInput && canInsertAmountIntoOutputSlot(result) && canInserItemIntoOutputSlot(result.getItem());
+		return this.dimension.get() == 1&&hasInput && canInsertAmountIntoOutputSlot(result) && canInserItemIntoOutputSlot(result.getItem());
 	}
 	private boolean canInserItemIntoOutputSlot(Item item) {
 		return this.getStack(OUTPUT_SLOT).getItem() == item || this.getStack(OUTPUT_SLOT).isEmpty();
@@ -159,14 +156,12 @@ public class DimensionalCrafterBlockEntity extends BlockEntity implements Extend
 	private boolean canInsertAmountIntoOutputSlot(ItemStack result) {
 		return this.getStack(OUTPUT_SLOT).getCount() + result.getCount() < this.getStack(OUTPUT_SLOT).getMaxCount();
 	}
+
 	private boolean isOutputSlotEmptyOrReceivable() {
 		return this.getStack(OUTPUT_SLOT).isEmpty() || this.getStack(OUTPUT_SLOT).getCount() < this.getStack(OUTPUT_SLOT).getMaxCount();
 	}
 	@Override
 	public DefaultedList<ItemStack> getItems() {
 		return inventory;
-	}
-	public void setDimension(int value) {
-		this.propertyDelegate.set(2,value);
 	}
 }
