@@ -12,10 +12,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(LivingEntityRenderer.class)
 public abstract class LivingEntityRendererMixin {
-	@Inject(method = "render(Lnet/minecraft/entity/LivingEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V", at = @At("HEAD"), cancellable = true)
+	@Inject(method = "render(Lnet/minecraft/entity/LivingEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V", at = @At("HEAD"),cancellable = true)
 	private void invisibleRender(LivingEntity entity, float f, float g, MatrixStack matrixStack,
 								 VertexConsumerProvider vertexConsumerProvider, int i, CallbackInfo ci) {
-		if (entity.getStatusEffects() != null && entity.hasStatusEffect(ModEffects.REALITY_TEAR) || entity.hasStatusEffect(ModEffects.REALITY_SPLIT)) {
+		if (entity.getStatusEffects() != null && entity.hasStatusEffect(ModEffects.REALITY_TEAR)||entity.hasStatusEffect(ModEffects.REALITY_SPLIT)){
 			ci.cancel();
 		}
 	}
