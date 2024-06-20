@@ -14,6 +14,7 @@ public class GalacticHorizonsDataGenerator implements DataGeneratorEntrypoint {
 		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 		pack.addProvider(ModWorldGenerator::new);
 		pack.addProvider(ModModelProvider::new);
+		pack.addProvider(ModRecipeProvider::new);
 		pack.addProvider(ModLootTableProvider::new);
 		pack.addProvider(ModBlockTagProvider::new);
 		pack.addProvider(ModEnUsProvider::new);
