@@ -1,0 +1,23 @@
+{
+  "type": "galactic_horizons:dimensional_merging",
+  "ingredients": [
+    {
+      "item": "minecraft:cobblestone"
+    },
+    {
+      "item": "minecraft:cobblestone"
+    },
+    {
+      "item": "minecraft:cobblestone"
+    },
+    {
+      "item": "minecraft:cobblestone"
+    },
+    {
+      "item": "minecraft:red_bed"
+    }
+  ],
+  "result": {
+    "item": "minecraft:bedrock"
+  }
+}

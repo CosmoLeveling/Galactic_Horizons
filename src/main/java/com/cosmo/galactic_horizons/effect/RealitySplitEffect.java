@@ -44,9 +44,6 @@ public class RealitySplitEffect extends StatusEffect {
 		//	entity.noClip = true;
 		//	entity.setOnGround(false);
 		//}
-		if (entity.getWorld() instanceof ServerWorld serverWorld) {
-			serverWorld.spawnParticles(ModParticles.REALITY_PARTICLE,entity.getBlockX(),entity.getBlockY(),entity.getBlockZ(),10,0.15,0.15,0.15,1);
-		}
 	}
 
 
@@ -57,6 +54,11 @@ public class RealitySplitEffect extends StatusEffect {
 				((ServerPlayerEntity) entity).getAbilities().allowModifyWorld = false;
 				((ServerPlayerEntity) entity).sendAbilitiesUpdate();
 		}
+		if (entity.getWorld() instanceof ServerWorld serverWorld) {
+			serverWorld.spawnParticles(ModParticles.REALITY_PARTICLE,entity.getBlockX(),entity.getBlockY(),entity.getBlockZ(),10,0.15,0.15,0.15,1);
+		}
+		GalacticHorizons.livingEntities.add(entity.getUuid());
+		syncList(entity,1);
 	}
 
 	@Override
@@ -68,10 +70,24 @@ public class RealitySplitEffect extends StatusEffect {
 			((ServerPlayerEntity) entity).getAbilities().allowModifyWorld = true;
 			((ServerPlayerEntity) entity).sendAbilitiesUpdate();
 		}
+		GalacticHorizons.livingEntities.remove(entity.getUuid());
+		syncList(entity,2);
 	}
 
 	@Override
 	public boolean canApplyUpdateEffect(int duration, int amplifier) {
 		return true;
+	}
+
+	public static void syncList( LivingEntity entity,int test) {
+		if (entity.getServer() != null) {
+			PacketByteBuf buf = PacketByteBufs.create();
+			buf.writeUuid(entity.getUuid());
+			if (test == 1) {
+				entity.getServer().getPlayerManager().sendToAll(ServerPlayNetworking.createS2CPacket(INVISIBILITY_UPDATE_PACKET_ID, buf));
+			} else {
+				entity.getServer().getPlayerManager().sendToAll(ServerPlayNetworking.createS2CPacket(INVISIBILITY_REMOVE_UPDATE_PACKET_ID,buf));
+			}
+		}
 	}
 }

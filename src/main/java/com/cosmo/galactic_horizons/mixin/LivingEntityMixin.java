@@ -17,7 +17,7 @@ public abstract class LivingEntityMixin {
 
 	@Inject(method = "updatePotionVisibility", at = @At("HEAD"),cancellable = true)
 	private void hasSplit(CallbackInfo ci){
-		if(this.hasStatusEffect(ModEffects.REALITY_TEAR)||this.hasStatusEffect(ModEffects.REALITY_SPLIT)){
+		if(!this.hasStatusEffect(null)&this.hasStatusEffect(ModEffects.REALITY_TEAR)||this.hasStatusEffect(ModEffects.REALITY_SPLIT)){
 			ci.cancel();
 		}
 	}

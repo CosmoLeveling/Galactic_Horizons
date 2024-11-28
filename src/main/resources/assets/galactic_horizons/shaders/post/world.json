@@ -1,0 +1,17 @@
+{
+  "targets": [
+    "a"
+  ],
+  "passes": [
+    {
+      "name": "galactic_horizons:world",
+      "intarget": "minecraft:main",
+      "outtarget": "a"
+},
+    {
+      "name": "blit",
+      "intarget": "a",
+      "outtarget": "minecraft:main"
+    }
+  ]
+}

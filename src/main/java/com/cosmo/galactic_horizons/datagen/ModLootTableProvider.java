@@ -17,6 +17,5 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 		add(ModBlocks.ETERNIUM_ORE,oreDrops(ModBlocks.ETERNIUM_ORE,ModItems.RAW_ETERNIUM));
 		add(ModBlocks.END_ETERNIUM_ORE,oreDrops(ModBlocks.END_ETERNIUM_ORE,ModItems.RAW_ETERNIUM));
 		addDrop(ModBlocks.DIMENSIONAL_CRAFTER);
-
 	}
 }

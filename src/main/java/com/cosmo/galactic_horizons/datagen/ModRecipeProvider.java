@@ -6,8 +6,11 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
+import net.minecraft.data.server.recipe.ShapelessRecipeJsonFactory;
 import net.minecraft.item.ItemConvertible;
+import net.minecraft.item.Items;
 import net.minecraft.recipe.RecipeCategory;
+import net.minecraft.recipe.ShapelessRecipe;
 import net.minecraft.util.Identifier;
 
 import java.util.List;
@@ -51,6 +54,18 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 			.ingredient('S',ModItems.ETERNIUM_INGOT)
 			.criterion(hasItem(ModItems.ETERNIUM_INGOT),conditionsFromItem(ModItems.ETERNIUM_INGOT))
 			.offerTo(exporter,new Identifier(getRecipeName(ModItems.ETERNIUM_LEGGINGS)));
-
+		ShapedRecipeJsonFactory.create(RecipeCategory.MISC,ModItems.Corrupted_Chorus,1)
+			.pattern(" b ")
+			.pattern("bcb")
+			.pattern(" b ")
+			.ingredient('b', Items.BONE)
+			.ingredient('c',Items.CHORUS_FRUIT)
+			.criterion(hasItem(Items.CHORUS_FRUIT),conditionsFromItem(Items.CHORUS_FRUIT))
+			.offerTo(exporter,new Identifier(getRecipeName(ModItems.Corrupted_Chorus)));
+		ShapelessRecipeJsonFactory.create(RecipeCategory.MISC,ModItems.Stable_Corrupted_Chorus,1)
+			.ingredient(ModItems.Corrupted_Chorus)
+			.ingredient(ModBlocks.REALITY_STABILIZER)
+			.criterion(hasItem(ModBlocks.REALITY_STABILIZER),conditionsFromItem(ModBlocks.REALITY_STABILIZER))
+			.offerTo(exporter,new Identifier(getRecipeName(ModItems.Stable_Corrupted_Chorus)));
 	}
 }

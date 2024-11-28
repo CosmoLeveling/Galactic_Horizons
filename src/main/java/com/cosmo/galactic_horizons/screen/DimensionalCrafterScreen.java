@@ -21,7 +21,6 @@ public class DimensionalCrafterScreen extends HandledScreen<DimensionalCrafterSc
 		super(handler, inventory, title);
 	}
 	public ButtonWidget button1;
-	@Override
 	protected void init() {
 		button1 = ButtonWidget.builder(Text.literal("Button 1"), button -> {
 				this.handler.setDim(1);
@@ -32,7 +31,6 @@ public class DimensionalCrafterScreen extends HandledScreen<DimensionalCrafterSc
 		playerInventoryTitleY = 1000;
 		addDrawableChild(button1);
 	}
-	@Override
 	protected void drawBackground(GuiGraphics context, float delta, int mouseX, int mouseY) {
 		RenderSystem.setShader(GameRenderer::getPositionTexShader);
 		RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
@@ -50,8 +48,6 @@ public class DimensionalCrafterScreen extends HandledScreen<DimensionalCrafterSc
 			context.drawTexture(TEXTURE, x + 98, y + 35, 176, 0, handler.getScaledProgress(), 14);
 		}
 	}
-
-	@Override
 	public void render(GuiGraphics context, int mouseX, int mouseY, float delta) {
 		renderBackground(context);
 		super.render(context, mouseX, mouseY, delta);

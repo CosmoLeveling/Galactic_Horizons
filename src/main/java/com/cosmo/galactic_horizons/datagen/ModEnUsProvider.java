@@ -30,5 +30,7 @@ public class ModEnUsProvider extends FabricLanguageProvider {
 		translationBuilder.add(ModItems.ETERNIUM_CHESTPLATE, "Eternium Chestplate");
 		translationBuilder.add(ModItems.ETERNIUM_LEGGINGS, "Eternium Leggings");
 		translationBuilder.add(ModItems.ETERNIUM_BOOTS, "Eternium Boots");
+		translationBuilder.add(ModBlocks.REALITY_STABILIZER, "Reality Stabilizer");
+		translationBuilder.add(ModItems.R,"wadwawdw");
 	}
 }

@@ -20,8 +20,8 @@ public class ModModelProvider extends FabricModelProvider {
 	@Override
 	public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
 		blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.ETERNIUM_ORE);
-		blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_ETERNIUM_ORE);
 		blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.END_ETERNIUM_ORE);
+		blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_ETERNIUM_ORE);
 	}
 
 	@Override
@@ -34,6 +34,7 @@ public class ModModelProvider extends FabricModelProvider {
 		itemModelGenerator.register(ModItems.ETERNIUM_BOOTS, Models.SINGLE_LAYER_ITEM);
 		itemModelGenerator.register(ModItems.Stable_Corrupted_Chorus, Models.SINGLE_LAYER_ITEM);
 		itemModelGenerator.register(ModItems.Corrupted_Chorus, Models.SINGLE_LAYER_ITEM);
+		itemModelGenerator.register(ModItems.R,Models.SINGLE_LAYER_ITEM);
 		itemModelGenerator.register(ModItems.RIFTER_SPAWN_EGG,
 			new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
 	}

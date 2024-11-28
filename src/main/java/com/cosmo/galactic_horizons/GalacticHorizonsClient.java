@@ -26,12 +26,14 @@ import java.util.HashSet;
 import java.util.UUID;
 
 public class GalacticHorizonsClient implements ClientModInitializer {
-	public static final Identifier SPLIT_ID = GalacticHorizons.id("shaders/post/split.json");
+	public static final Identifier SPLIT_ID = new Identifier("galactic_horizons","shaders/post/split.json");
 	private final ManagedShaderEffect SplitShader = ShaderEffectManager.getInstance().manage(SPLIT_ID);
 	public static final Identifier SPECTRAL_ID = GalacticHorizons.id("shaders/post/spectral.json");
 	private final ManagedShaderEffect SpectralShader = ShaderEffectManager.getInstance().manage(SPECTRAL_ID);
 	public static final Identifier GREEN_ID = GalacticHorizons.id("shaders/post/grainy_green.json");
 	private final ManagedShaderEffect GreenShader = ShaderEffectManager.getInstance().manage(GREEN_ID);
+	public static final Identifier WORLD_ID = new Identifier("galactic_horizons","shaders/post/world.json");
+	private final ManagedShaderEffect WorldShader = ShaderEffectManager.getInstance().manage(WORLD_ID);
 	public static HashSet<UUID> entities = new HashSet<>();
 
 	@Override

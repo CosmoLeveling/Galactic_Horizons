@@ -1,16 +1,13 @@
 package com.cosmo.galactic_horizons.block.entity;
 
-import com.cosmo.galactic_horizons.effect.ModEffects;
-import com.cosmo.galactic_horizons.potion.ModPotions;
-import com.cosmo.galactic_horizons.screen.DimensionalCrafterScreen;
 import com.cosmo.galactic_horizons.screen.DimensionalCrafterScreenHandler;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
+import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -24,15 +21,18 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Objects;
+import java.util.Optional;
+
 public class DimensionalCrafterBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory,ImplementedInventory{
 	private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(6,ItemStack.EMPTY);
 
-	private static final int INPUT_SLOT = 0;
-	private static final int INPUT_SLOT1 = 1;
-	private static final int INPUT_SLOT2 = 4;
-	private static final int INPUT_SLOT3 = 3;
-	private static final int CENTER_SLOT = 2;
-	private static final int OUTPUT_SLOT = 5;
+	private static final int INPUT_SLOT_1 = 1;
+	private static final int INPUT_SLOT_2 = 2;
+	private static final int INPUT_SLOT_3 = 3;
+	private static final int INPUT_SLOT_4 = 4;
+	private static final int CENTER_SLOT = 5;
+	private static final int OUTPUT_SLOT = 0;
 
 	public final PropertyDelegate propertyDelegate;
 	private int progress = 0;
@@ -101,7 +101,7 @@ public class DimensionalCrafterBlockEntity extends BlockEntity implements Extend
 		if(world.isClient()) {
 			return;
 		}
-		if(this.getStack(INPUT_SLOT).getItem() == Items.DIRT){
+		if(this.getStack(INPUT_SLOT_1).getItem() == Items.DIRT){
 			dimension = 1;
 		}
 		if(isOutputSlotEmptyOrReceivable()){
@@ -127,17 +127,6 @@ public class DimensionalCrafterBlockEntity extends BlockEntity implements Extend
 		this.progress = 0;
 	}
 
-	private void craftItem() {
-		this.removeStack(INPUT_SLOT,1);
-		this.removeStack(INPUT_SLOT1,1);
-		this.removeStack(INPUT_SLOT2,1);
-		this.removeStack(INPUT_SLOT3,1);
-		this.removeStack(CENTER_SLOT,1);
-		ItemStack result = new ItemStack(Items.BARRIER);
-
-		this.setStack(OUTPUT_SLOT,new ItemStack(result.getItem(), getStack(OUTPUT_SLOT).getCount() + result.getCount()));
-	}
-
 	private boolean hasCraftingFinished() {
 		return progress >= maxProgress;
 	}
@@ -147,12 +136,30 @@ public class DimensionalCrafterBlockEntity extends BlockEntity implements Extend
 	}
 
 	private boolean hasRecipe() {
-		ItemStack result = new ItemStack(Items.BARRIER);
-		System.out.println(this.dimension);
-		boolean hasInput = getStack(INPUT_SLOT).getItem() == Items.DIRT && getStack(INPUT_SLOT1).getItem() == Items.DIRT && getStack(INPUT_SLOT2).isEmpty() && getStack(INPUT_SLOT3).isEmpty() && getStack(CENTER_SLOT).getItem() == Items.DIRT;
-		return this.dimension == 1&&hasInput && canInsertAmountIntoOutputSlot(result) && canInserItemIntoOutputSlot(result.getItem());
+		Optional<DimensionalMergingRecipe> recipe = getCurrentRecipe();
+
+		return recipe.isPresent() && canInsertAmountIntoOutputSlot(recipe.get().getResult(null))
+			&& canInsertItemIntoOutputSlot(recipe.get().getResult(null).getItem());
 	}
-	private boolean canInserItemIntoOutputSlot(Item item) {
+	private void craftItem() {
+		Optional<DimensionalMergingRecipe> recipe = getCurrentRecipe();
+		this.removeStack(CENTER_SLOT, 1);
+		this.removeStack(INPUT_SLOT_1, 1);
+		this.removeStack(INPUT_SLOT_2, 1);
+		this.removeStack(INPUT_SLOT_3, 1);
+		this.removeStack(INPUT_SLOT_4, 1);
+		this.setStack(OUTPUT_SLOT, new ItemStack(recipe.get().getResult(null).getItem(),
+			getStack(OUTPUT_SLOT).getCount() + recipe.get().getResult(null).getCount()));
+	}
+	private Optional<DimensionalMergingRecipe> getCurrentRecipe() {
+		SimpleInventory inv = new SimpleInventory(this.size());
+		for(int i = 0; i < this.size(); i++) {
+			inv.setStack(i, this.getStack(i));
+		}
+
+		return (Objects.requireNonNull(getWorld())).getRecipeManager().getFirstMatch(DimensionalMergingRecipe.Type.INSTANCE, inv, getWorld());
+	}
+	private boolean canInsertItemIntoOutputSlot(Item item) {
 		return this.getStack(OUTPUT_SLOT).getItem() == item || this.getStack(OUTPUT_SLOT).isEmpty();
 	}
 

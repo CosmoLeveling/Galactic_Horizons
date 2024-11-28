@@ -10,10 +10,11 @@ import java.util.function.Supplier;
 //7
 
 public enum ModArmorMaterials implements ArmorMaterial {
-	ETERNIUM("eternium",0,25,15,new int[]  {3,8,6,3},
+	ETERNIUM("eternium",false,0,25,15,new int[]  {3,8,6,3},
 		SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE,2f,0.1f,()-> Ingredient.ofItems(ModItems.RAW_ETERNIUM))
 	;
 	private final String name;
+	private final Boolean glint;
 	private final int durabilityMultiplier;
 	private final int enchantability;
 	private final int[] protectionAmounts;
@@ -23,8 +24,9 @@ public enum ModArmorMaterials implements ArmorMaterial {
 	private final float knockbackResistance;
 	private final Supplier<Ingredient> repairIngredient;
 	private static final int[] BASE_DURIBILITY={11,16,15,13};
-	ModArmorMaterials(String name,int speed, int durabilityMultiplier, int enchantability, int[] protectionAmounts, SoundEvent equipSound, float toughness, float knockbackResistance, Supplier<Ingredient> repairIngredient) {
+	ModArmorMaterials(String name,Boolean glint,int speed, int durabilityMultiplier, int enchantability, int[] protectionAmounts, SoundEvent equipSound, float toughness, float knockbackResistance, Supplier<Ingredient> repairIngredient) {
 		this.name = name;
+		this.glint = glint;
 		this.speed = speed;
 		this.durabilityMultiplier = durabilityMultiplier;
 		this.enchantability = enchantability;
@@ -39,7 +41,9 @@ public enum ModArmorMaterials implements ArmorMaterial {
 	public int getDurability(ArmorItem.ArmorSlot slot) {
 		return BASE_DURIBILITY[slot.ordinal()]*this.durabilityMultiplier;//it was return BASE_DURIBILITY[slot.ordinal()*this.durabilityMultiplier]
 	}
-
+	public Boolean getGlint(){
+		return this.glint;
+	}
 	@Override
 	public int getProtection(ArmorItem.ArmorSlot slot) {
 		return protectionAmounts[slot.ordinal()];

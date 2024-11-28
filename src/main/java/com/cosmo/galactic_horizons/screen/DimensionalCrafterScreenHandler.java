@@ -1,7 +1,8 @@
 package com.cosmo.galactic_horizons.screen;
 
+import com.cosmo.galactic_horizons.block.custom.DimensionalCrafter;
 import com.cosmo.galactic_horizons.block.entity.DimensionalCrafterBlockEntity;
-import com.cosmo.galactic_horizons.screen.slots.outputslot;
+import com.cosmo.galactic_horizons.screen.slots.OutputSlot;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -10,7 +11,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.*;
 import net.minecraft.screen.slot.Slot;
-import net.minecraft.world.World;
 
 public class DimensionalCrafterScreenHandler extends ScreenHandler {
 	private final Inventory inventory;
@@ -33,12 +33,12 @@ public class DimensionalCrafterScreenHandler extends ScreenHandler {
 		playerInventory.onOpen(playerInventory.player);
 		this.propertyDelegate = arrayPropertyDelegate;
 		this.blockEntity = (DimensionalCrafterBlockEntity) blockEntity;
-		this.addSlot(new Slot(inventory,0,77,34));
-		this.addSlot(new Slot(inventory,1,58,15));
-		this.addSlot(new Slot(inventory,2,58,34));
-		this.addSlot(new Slot(inventory,3,58,53));
-		this.addSlot(new Slot(inventory,4,39,34));
-		this.addSlot(new outputslot(inventory,5,123,34));
+		this.addSlot(new Slot(inventory, 1,77,34));
+		this.addSlot(new Slot(inventory,2,58,15));
+		this.addSlot(new Slot(inventory,3,39,34));
+		this.addSlot(new Slot(inventory,4,58,53));
+		this.addSlot(new Slot(inventory,5,58,34));
+		this.addSlot(new OutputSlot(inventory,0,123,34));
 
 		addPlayerHotbar(playerInventory);
 		addPlayerInventory(playerInventory);
@@ -101,7 +101,7 @@ public class DimensionalCrafterScreenHandler extends ScreenHandler {
 
 	public void setDim(int Value) {
 		System.out.println(Value);
-		this.setProperty(2,1);
+		this.setProperty(2,Value);
 		System.out.println(this.blockEntity.dimension);
 	}
 }

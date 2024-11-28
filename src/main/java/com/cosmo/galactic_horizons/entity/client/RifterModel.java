@@ -72,7 +72,6 @@ public class RifterModel<T extends RifterEntity> extends SinglePartEntityModel<T
 	public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, float red, float green, float blue, float alpha) {
 		Rifter.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
 	}
-
 	@Override
 	public ModelPart getPart() {
 		return Rifter;

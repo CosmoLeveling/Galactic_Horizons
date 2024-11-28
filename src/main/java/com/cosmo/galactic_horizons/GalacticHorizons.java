@@ -13,6 +13,7 @@ import com.cosmo.galactic_horizons.screen.ModScreenHandler;
 import com.cosmo.galactic_horizons.world.gen.ModWorldGeneration;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.DefaultAttributeRegistry;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
 import org.quiltmc.loader.api.ModContainer;
@@ -47,6 +48,7 @@ public class GalacticHorizons implements ModInitializer {
 		ModParticles.registerParticles();
 		FabricDefaultAttributeRegistry.register(ModEntities.RIFTER, RifterEntity.createRifterAttributes());
 		ModMessages.registerC2SPackets();
+		GalacticHorizonsRecipes.RegisterRecipes();
 		ModItems.registerModItems();
 		ServerPlayConnectionEvents.JOIN.register(((handler, sender, server) ->
 		{
@@ -57,7 +59,7 @@ public class GalacticHorizons implements ModInitializer {
 			}
 		}));
 		ServerEntityLoadEvents.AFTER_LOAD.register((entity, world) -> {
-			if(entity instanceof LivingEntity livingEntity && livingEntity.hasStatusEffect(ModEffects.REALITY_TEAR)&&entity.getServer()!=null){
+			if(entity instanceof LivingEntity livingEntity && (livingEntity.hasStatusEffect(ModEffects.REALITY_TEAR)|| livingEntity.hasStatusEffect(ModEffects.REALITY_SPLIT)) &&entity.getServer()!=null){
 				PacketByteBuf buf = PacketByteBufs.create();
 				buf.writeUuid(livingEntity.getUuid());
 				livingEntities.add(livingEntity.getUuid());

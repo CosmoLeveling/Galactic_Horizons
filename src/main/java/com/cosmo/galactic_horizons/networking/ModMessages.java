@@ -6,6 +6,7 @@ import com.cosmo.galactic_horizons.networking.packet.SplitLoadUpdateS2CPacket;
 import com.cosmo.galactic_horizons.networking.packet.SplitRemoveUpdateS2CPacket;
 import com.cosmo.galactic_horizons.networking.packet.SplitUpdateS2CPacket;
 import net.minecraft.util.Identifier;
+import org.quiltmc.qsl.networking.api.ServerPlayNetworking;
 import org.quiltmc.qsl.networking.api.client.ClientPlayNetworking;
 
 public class ModMessages {

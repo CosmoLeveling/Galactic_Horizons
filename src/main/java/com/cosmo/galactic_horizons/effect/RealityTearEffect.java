@@ -12,6 +12,7 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.quiltmc.qsl.entity.effect.api.StatusEffectRemovalReason;
@@ -28,25 +29,14 @@ public class RealityTearEffect extends StatusEffect {
 
 	@Override
 	public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-		float f = entity.getYaw();
-		float g = entity.getPitch();
-		float h = -MathHelper.sin(f * 0.017453292F) * MathHelper.cos(g * 0.017453292F);
-		float k = -MathHelper.sin(g * 0.017453292F);
-		float l = MathHelper.cos(f * 0.017453292F) * MathHelper.cos(g * 0.017453292F);
-		float m = MathHelper.sqrt(h * h + k * k + l * l);
-		float n = 2.0F * ((1.0F + (float) 1) / 4.0F);
-		h *= n / m;
-		k *= n / m;
-		l *= n / m;
-		entity.setVelocity(h, k, l);
+		Vec3d lookDir =entity.getRotationVec(1f);
+		entity.setVelocity(lookDir.x, lookDir.y, lookDir.z);
 		World world = entity.getWorld();
 		if (entity instanceof PlayerEntity) {
 			entity.noClip = true;
 			entity.setOnGround(false);
 		}
-		if (entity.getWorld() instanceof ServerWorld serverWorld) {
-			serverWorld.spawnParticles(ModParticles.REALITY_PARTICLE,entity.getBlockX(),entity.getBlockY(),entity.getBlockZ(),10,0.15,0.15,0.15,1);
-		}
+
 	}
 
 
@@ -56,6 +46,9 @@ public class RealityTearEffect extends StatusEffect {
 				((ServerPlayerEntity) entity).getAbilities().invulnerable = true;
 				((ServerPlayerEntity) entity).getAbilities().allowModifyWorld = false;
 				((ServerPlayerEntity) entity).sendAbilitiesUpdate();
+		}
+		if (entity.getWorld() instanceof ServerWorld serverWorld) {
+			serverWorld.spawnParticles(ModParticles.REALITY_PARTICLE,entity.getBlockX(),entity.getBlockY(),entity.getBlockZ(),10,0.15,0.15,0.15,1);
 		}
 	}
 

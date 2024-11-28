@@ -5,6 +5,7 @@ import com.cosmo.galactic_horizons.block.ModBlocks;
 import com.cosmo.galactic_horizons.effect.ModEffects;
 import com.cosmo.galactic_horizons.entity.ModEntities;
 import com.cosmo.galactic_horizons.item.custom.ModArmorItem;
+import com.cosmo.galactic_horizons.item.custom.PrintItem;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -25,6 +26,8 @@ public class ModItems {
 	public static final Item Corrupted_Chorus = registerItem("corrupted_chorus",new Item(new QuiltItemSettings().food(new FoodComponent.Builder().saturationModifier(10f).hunger(1).statusEffect(new StatusEffectInstance(ModEffects.REALITY_TEAR,200,0),1).alwaysEdible().build())));
 	public static final Item RIFTER_SPAWN_EGG = registerItem("rifter_spawn_egg",
 		new SpawnEggItem(ModEntities.RIFTER,0x2f114d,0x3e1369,new QuiltItemSettings()));
+	public static final Item R = registerItem("r",
+		new PrintItem(new QuiltItemSettings()));
 	private static void addItemsToNaturalBlocksItemGroup(FabricItemGroupEntries entries) {
 		entries.addAfter(Items.DEEPSLATE_DIAMOND_ORE,ModBlocks.ETERNIUM_ORE);
 		entries.addAfter(ModBlocks.ETERNIUM_ORE,ModBlocks.DEEPSLATE_ETERNIUM_ORE);
