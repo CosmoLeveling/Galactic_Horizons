@@ -17,6 +17,7 @@ import org.quiltmc.qsl.item.setting.api.QuiltItemSettings;
 
 public class ModItems {
 	public static final Item RAW_ETERNIUM = registerItem("raw_eternium",new Item(new QuiltItemSettings()));
+	public static final Item ENDERMAN_BLOOD = registerItem("enderman_blood",new Item(new QuiltItemSettings()));
 	public static final Item ETERNIUM_INGOT = registerItem("eternium_ingot",new Item(new QuiltItemSettings()));
 	public static final Item ETERNIUM_HELMET = registerItem("eternium_helmet",new ModArmorItem(ModArmorMaterials.ETERNIUM,ArmorItem.ArmorSlot.HELMET,new QuiltItemSettings()));
 	public static final Item ETERNIUM_CHESTPLATE = registerItem("eternium_chestplate",new ModArmorItem(ModArmorMaterials.ETERNIUM,ArmorItem.ArmorSlot.CHESTPLATE,new QuiltItemSettings()));

@@ -35,6 +35,7 @@ public class ModModelProvider extends FabricModelProvider {
 		itemModelGenerator.register(ModItems.Stable_Corrupted_Chorus, Models.SINGLE_LAYER_ITEM);
 		itemModelGenerator.register(ModItems.Corrupted_Chorus, Models.SINGLE_LAYER_ITEM);
 		itemModelGenerator.register(ModItems.R,Models.SINGLE_LAYER_ITEM);
+		itemModelGenerator.register(ModItems.ENDERMAN_BLOOD,Models.SINGLE_LAYER_ITEM);
 		itemModelGenerator.register(ModItems.RIFTER_SPAWN_EGG,
 			new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
 	}

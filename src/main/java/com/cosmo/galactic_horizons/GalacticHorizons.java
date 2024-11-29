@@ -10,6 +10,7 @@ import com.cosmo.galactic_horizons.networking.ModMessages;
 import com.cosmo.galactic_horizons.particle.ModParticles;
 import com.cosmo.galactic_horizons.potion.ModPotions;
 import com.cosmo.galactic_horizons.screen.ModScreenHandler;
+import com.cosmo.galactic_horizons.util.ModLootTableModifiers;
 import com.cosmo.galactic_horizons.world.gen.ModWorldGeneration;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.entity.LivingEntity;
@@ -48,6 +49,7 @@ public class GalacticHorizons implements ModInitializer {
 		ModParticles.registerParticles();
 		FabricDefaultAttributeRegistry.register(ModEntities.RIFTER, RifterEntity.createRifterAttributes());
 		ModMessages.registerC2SPackets();
+		ModLootTableModifiers.modifyLootTables();
 		GalacticHorizonsRecipes.RegisterRecipes();
 		ModItems.registerModItems();
 		ServerPlayConnectionEvents.JOIN.register(((handler, sender, server) ->

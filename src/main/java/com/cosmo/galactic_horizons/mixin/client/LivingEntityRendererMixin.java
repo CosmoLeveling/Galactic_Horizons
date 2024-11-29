@@ -2,6 +2,8 @@ package com.cosmo.galactic_horizons.mixin.client;
 
 import com.cosmo.galactic_horizons.GalacticHorizonsClient;
 import com.cosmo.galactic_horizons.effect.ModEffects;
+import com.cosmo.galactic_horizons.entity.ModEntities;
+import com.cosmo.galactic_horizons.entity.custom.RifterEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.LivingEntityRenderer;
@@ -18,7 +20,7 @@ public abstract class LivingEntityRendererMixin {
 	@Inject(method = "render(Lnet/minecraft/entity/LivingEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V", at = @At("HEAD"),cancellable = true)
 	private void invisibleRender(LivingEntity entity, float f, float g, MatrixStack matrixStack,
 								 VertexConsumerProvider vertexConsumerProvider, int i, CallbackInfo ci) {
-		if (entity != null &&MinecraftClient.getInstance().player != null && GalacticHorizonsClient.entities.contains(entity.getUuid()) &&!GalacticHorizonsClient.entities.contains( MinecraftClient.getInstance().player.getUuid())){
+		if (entity instanceof RifterEntity && MinecraftClient.getInstance().player != null &&!GalacticHorizonsClient.entities.contains( MinecraftClient.getInstance().player.getUuid())||entity != null &&MinecraftClient.getInstance().player != null && GalacticHorizonsClient.entities.contains(entity.getUuid()) &&!GalacticHorizonsClient.entities.contains( MinecraftClient.getInstance().player.getUuid())){
 			ci.cancel();
 		}
 	}

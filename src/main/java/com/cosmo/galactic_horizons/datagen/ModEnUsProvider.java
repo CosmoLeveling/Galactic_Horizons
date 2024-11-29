@@ -22,7 +22,7 @@ public class ModEnUsProvider extends FabricLanguageProvider {
 		translationBuilder.add(ModBlocks.END_ETERNIUM_ORE, "End Eternium Ore");
 		translationBuilder.add(ModBlocks.ETERNIUM_ORE, "Eternium Ore");
 		translationBuilder.add(ModBlocks.DIMENSIONAL_CRAFTER, "Dimensional Crafter");
-		translationBuilder.add(ModEntities.RIFTER, "Rifter");
+		translationBuilder.add(ModEntities.RIFTER, "§kRifter");
 		translationBuilder.add(ModEffects.REALITY_SPLIT, "Reality Split");
 		translationBuilder.add(ModEffects.REALITY_TEAR, "Reality Tear");
 		translationBuilder.add(ModItems.ETERNIUM_INGOT, "Eternium Ingot");
