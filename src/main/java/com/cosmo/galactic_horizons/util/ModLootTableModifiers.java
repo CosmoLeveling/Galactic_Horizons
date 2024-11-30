@@ -1,6 +1,6 @@
 package com.cosmo.galactic_horizons.util;
 
-import com.cosmo.galactic_horizons.item.ModItems;
+import com.cosmo.galactic_horizons.item.GalacticHorizonsItems;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.condition.RandomChanceLootCondition;
@@ -19,7 +19,7 @@ public class ModLootTableModifiers {
 				LootPool.Builder poolBuilder = LootPool.builder()
 					.rolls(ConstantLootNumberProvider.create(1))
 					.conditionally(RandomChanceLootCondition.builder(1f))
-					.with(ItemEntry.builder(ModItems.ENDERMAN_BLOOD))
+					.with(ItemEntry.builder(GalacticHorizonsItems.ENDERMAN_BLOOD))
 					.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f,1.0f)).build());
 				tableBuilder.pool(poolBuilder.build());
 			}

@@ -1,6 +1,6 @@
 package com.cosmo.galactic_horizons.datagen;
 
-import com.cosmo.galactic_horizons.block.ModBlocks;
+import com.cosmo.galactic_horizons.block.GalacticHorizonsBlocks;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.registry.HolderLookup;
@@ -16,14 +16,12 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 	@Override
 	protected void configure(HolderLookup.Provider arg) {
 		getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
-			.add(ModBlocks.DEEPSLATE_ETERNIUM_ORE)
-			.add(ModBlocks.ETERNIUM_ORE)
-			.add(ModBlocks.END_ETERNIUM_ORE)
-			.add(ModBlocks.DIMENSIONAL_CRAFTER);
+			.add(GalacticHorizonsBlocks.DEEPSLATE_ETERNIUM_ORE)
+			.add(GalacticHorizonsBlocks.ETERNIUM_ORE)
+			.add(GalacticHorizonsBlocks.END_ETERNIUM_ORE);
 		getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)
-			.add(ModBlocks.DIMENSIONAL_CRAFTER)
-			.add(ModBlocks.ETERNIUM_ORE)
-			.add(ModBlocks.END_ETERNIUM_ORE)
-			.add(ModBlocks.DEEPSLATE_ETERNIUM_ORE);
+			.add(GalacticHorizonsBlocks.ETERNIUM_ORE)
+			.add(GalacticHorizonsBlocks.END_ETERNIUM_ORE)
+			.add(GalacticHorizonsBlocks.DEEPSLATE_ETERNIUM_ORE);
 	}
 }

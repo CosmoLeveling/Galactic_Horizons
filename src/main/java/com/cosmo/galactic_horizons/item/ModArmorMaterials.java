@@ -11,7 +11,7 @@ import java.util.function.Supplier;
 
 public enum ModArmorMaterials implements ArmorMaterial {
 	ETERNIUM("eternium",false,0,25,15,new int[]  {3,8,6,3},
-		SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE,2f,0.1f,()-> Ingredient.ofItems(ModItems.RAW_ETERNIUM))
+		SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE,2f,0.1f,()-> Ingredient.ofItems(GalacticHorizonsItems.RAW_ETERNIUM))
 	;
 	private final String name;
 	private final Boolean glint;

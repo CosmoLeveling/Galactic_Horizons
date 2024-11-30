@@ -10,7 +10,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import org.quiltmc.qsl.entity.api.QuiltEntityTypeBuilder;
 
-public class ModEntities {
+public class GalacticHorizonsEntities {
 public static final EntityType<RifterEntity> RIFTER = Registry.register(Registries.ENTITY_TYPE,
 	new Identifier(GalacticHorizons.MOD_ID,"rifter"),
 	QuiltEntityTypeBuilder.create(SpawnGroup.MONSTER,RifterEntity::new)

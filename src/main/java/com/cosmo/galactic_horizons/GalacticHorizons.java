@@ -1,20 +1,17 @@
 package com.cosmo.galactic_horizons;
 
-import com.cosmo.galactic_horizons.block.ModBlocks;
-import com.cosmo.galactic_horizons.block.entity.ModBlockEntities;
-import com.cosmo.galactic_horizons.effect.ModEffects;
-import com.cosmo.galactic_horizons.entity.ModEntities;
+import com.cosmo.galactic_horizons.block.GalacticHorizonsBlocks;
+import com.cosmo.galactic_horizons.effect.GalacticHorizonsEffects;
+import com.cosmo.galactic_horizons.entity.GalacticHorizonsEntities;
 import com.cosmo.galactic_horizons.entity.custom.RifterEntity;
-import com.cosmo.galactic_horizons.item.ModItems;
+import com.cosmo.galactic_horizons.item.GalacticHorizonsItems;
 import com.cosmo.galactic_horizons.networking.ModMessages;
 import com.cosmo.galactic_horizons.particle.ModParticles;
 import com.cosmo.galactic_horizons.potion.ModPotions;
-import com.cosmo.galactic_horizons.screen.ModScreenHandler;
 import com.cosmo.galactic_horizons.util.ModLootTableModifiers;
 import com.cosmo.galactic_horizons.world.gen.ModWorldGeneration;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.DefaultAttributeRegistry;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
 import org.quiltmc.loader.api.ModContainer;
@@ -40,18 +37,16 @@ public class GalacticHorizons implements ModInitializer {
     @Override
     public void onInitialize(ModContainer mod) {
 		LOGGER.info("Hello Quilt world from {}! Stay fresh!", mod.metadata().name());
-		ModEffects.registerEffects();
-		ModBlocks.registerModBlocks();
+		GalacticHorizonsEffects.registerEffects();
+		GalacticHorizonsBlocks.registerModBlocks();
 		ModPotions.registerPotions();
-		ModBlockEntities.registerBlockEntities();
-		ModScreenHandler.registerScreenHandlers();
 		ModWorldGeneration.generateModWorldGen();
 		ModParticles.registerParticles();
-		FabricDefaultAttributeRegistry.register(ModEntities.RIFTER, RifterEntity.createRifterAttributes());
+		FabricDefaultAttributeRegistry.register(GalacticHorizonsEntities.RIFTER, RifterEntity.createRifterAttributes());
 		ModMessages.registerC2SPackets();
 		ModLootTableModifiers.modifyLootTables();
 		GalacticHorizonsRecipes.RegisterRecipes();
-		ModItems.registerModItems();
+		GalacticHorizonsItems.registerModItems();
 		ServerPlayConnectionEvents.JOIN.register(((handler, sender, server) ->
 		{
 			if(server != null){
@@ -61,7 +56,7 @@ public class GalacticHorizons implements ModInitializer {
 			}
 		}));
 		ServerEntityLoadEvents.AFTER_LOAD.register((entity, world) -> {
-			if(entity instanceof LivingEntity livingEntity && (livingEntity.hasStatusEffect(ModEffects.REALITY_TEAR)|| livingEntity.hasStatusEffect(ModEffects.REALITY_SPLIT)) &&entity.getServer()!=null){
+			if(entity instanceof LivingEntity livingEntity && (livingEntity.hasStatusEffect(GalacticHorizonsEffects.REALITY_TEAR)|| livingEntity.hasStatusEffect(GalacticHorizonsEffects.REALITY_SPLIT)) &&entity.getServer()!=null){
 				PacketByteBuf buf = PacketByteBufs.create();
 				buf.writeUuid(livingEntity.getUuid());
 				livingEntities.add(livingEntity.getUuid());

@@ -1,8 +1,7 @@
 package com.cosmo.galactic_horizons.mixin;
 
 
-import com.cosmo.galactic_horizons.effect.ModEffects;
-import com.cosmo.galactic_horizons.entity.ModEntities;
+import com.cosmo.galactic_horizons.effect.GalacticHorizonsEffects;
 import com.cosmo.galactic_horizons.entity.custom.RifterEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -21,14 +20,14 @@ public abstract class LivingEntityMixin {
 
 	@Inject(method = "updatePotionVisibility", at = @At("HEAD"),cancellable = true)
 	private void hasSplit(CallbackInfo ci){
-		if(!this.hasStatusEffect(null)&this.hasStatusEffect(ModEffects.REALITY_TEAR)||this.hasStatusEffect(ModEffects.REALITY_SPLIT)){
+		if(!this.hasStatusEffect(null)&this.hasStatusEffect(GalacticHorizonsEffects.REALITY_TEAR)||this.hasStatusEffect(GalacticHorizonsEffects.REALITY_SPLIT)){
 			ci.cancel();
 		}
 	}
 
 	@Inject(method = "damage", at = @At("HEAD"), cancellable = true)
-	private void Damage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir){
-		if ((this.hasStatusEffect(ModEffects.REALITY_SPLIT)||this.hasStatusEffect(ModEffects.REALITY_TEAR))&&!(source.getSource() instanceof RifterEntity)){
+	private void Damage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+		if ((this.hasStatusEffect(GalacticHorizonsEffects.REALITY_SPLIT) || this.hasStatusEffect(GalacticHorizonsEffects.REALITY_TEAR)) && !(source.getSource() instanceof RifterEntity)) {
 			cir.setReturnValue(Boolean.FALSE);
 		}
 	}

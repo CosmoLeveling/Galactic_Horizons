@@ -1,10 +1,9 @@
 package com.cosmo.galactic_horizons.datagen;
 
-import com.cosmo.galactic_horizons.block.ModBlocks;
-import com.cosmo.galactic_horizons.item.ModItems;
+import com.cosmo.galactic_horizons.block.GalacticHorizonsBlocks;
+import com.cosmo.galactic_horizons.item.GalacticHorizonsItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
-import net.minecraft.item.ItemConvertible;
 
 public class ModLootTableProvider extends FabricBlockLootTableProvider {
 	public ModLootTableProvider(FabricDataOutput dataOutput) {
@@ -13,9 +12,8 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 
 	@Override
 	public void generate() {
-		add(ModBlocks.DEEPSLATE_ETERNIUM_ORE,oreDrops(ModBlocks.DEEPSLATE_ETERNIUM_ORE,ModItems.RAW_ETERNIUM));
-		add(ModBlocks.ETERNIUM_ORE,oreDrops(ModBlocks.ETERNIUM_ORE,ModItems.RAW_ETERNIUM));
-		add(ModBlocks.END_ETERNIUM_ORE,oreDrops(ModBlocks.END_ETERNIUM_ORE,ModItems.RAW_ETERNIUM));
-		addDrop(ModBlocks.DIMENSIONAL_CRAFTER);
+		add(GalacticHorizonsBlocks.DEEPSLATE_ETERNIUM_ORE,oreDrops(GalacticHorizonsBlocks.DEEPSLATE_ETERNIUM_ORE, GalacticHorizonsItems.RAW_ETERNIUM));
+		add(GalacticHorizonsBlocks.ETERNIUM_ORE,oreDrops(GalacticHorizonsBlocks.ETERNIUM_ORE, GalacticHorizonsItems.RAW_ETERNIUM));
+		add(GalacticHorizonsBlocks.END_ETERNIUM_ORE,oreDrops(GalacticHorizonsBlocks.END_ETERNIUM_ORE, GalacticHorizonsItems.RAW_ETERNIUM));
 	}
 }

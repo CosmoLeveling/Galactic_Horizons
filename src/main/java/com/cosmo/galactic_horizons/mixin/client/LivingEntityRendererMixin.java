@@ -1,15 +1,12 @@
 package com.cosmo.galactic_horizons.mixin.client;
 
 import com.cosmo.galactic_horizons.GalacticHorizonsClient;
-import com.cosmo.galactic_horizons.effect.ModEffects;
-import com.cosmo.galactic_horizons.entity.ModEntities;
 import com.cosmo.galactic_horizons.entity.custom.RifterEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.LivingEntityRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
-import org.quiltmc.qsl.resource.loader.api.reloader.ResourceReloaderKeys;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

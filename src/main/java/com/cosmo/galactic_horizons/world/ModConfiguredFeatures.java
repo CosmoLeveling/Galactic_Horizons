@@ -1,7 +1,7 @@
 package com.cosmo.galactic_horizons.world;
 
 import com.cosmo.galactic_horizons.GalacticHorizons;
-import com.cosmo.galactic_horizons.block.ModBlocks;
+import com.cosmo.galactic_horizons.block.GalacticHorizonsBlocks;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -28,10 +28,10 @@ public class ModConfiguredFeatures {
 		RuleTest endReplaceables = new BlockMatchRuleTest(Blocks.END_STONE);
 
 		List<OreFeatureConfig.Target> overworldEterniumOre =
-			List.of(OreFeatureConfig.createTarget(stoneReplaceables, ModBlocks.ETERNIUM_ORE.getDefaultState()),
-					OreFeatureConfig.createTarget(deepslateReplaceables,ModBlocks.DEEPSLATE_ETERNIUM_ORE.getDefaultState()));
+			List.of(OreFeatureConfig.createTarget(stoneReplaceables, GalacticHorizonsBlocks.ETERNIUM_ORE.getDefaultState()),
+					OreFeatureConfig.createTarget(deepslateReplaceables, GalacticHorizonsBlocks.DEEPSLATE_ETERNIUM_ORE.getDefaultState()));
 		List<OreFeatureConfig.Target> endEterniumOre =
-			List.of(OreFeatureConfig.createTarget(endReplaceables, ModBlocks.END_ETERNIUM_ORE.getDefaultState()));
+			List.of(OreFeatureConfig.createTarget(endReplaceables, GalacticHorizonsBlocks.END_ETERNIUM_ORE.getDefaultState()));
 
 		register(context, ETERNIUM_ORE_KEY,Feature.ORE, new OreFeatureConfig(overworldEterniumOre,6,0.5f));
 		register(context, END_ETERNIUM_ORE_KEY,Feature.ORE, new OreFeatureConfig(endEterniumOre,6,0.5f));

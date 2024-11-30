@@ -8,7 +8,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
-public class ModEffects extends StatusEffects {
+public class GalacticHorizonsEffects extends StatusEffects {
 	public static StatusEffect REALITY_TEAR;
 	public static StatusEffect REALITY_SPLIT;
 

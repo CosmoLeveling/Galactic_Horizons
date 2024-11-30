@@ -1,7 +1,6 @@
 package com.cosmo.galactic_horizons.mixin.client;
 
 
-import com.cosmo.galactic_horizons.effect.ModEffects;
 import com.cosmo.galactic_horizons.entity.custom.RifterEntity;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.cosmo.galactic_horizons.GalacticHorizonsClient;
@@ -10,7 +9,6 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.world.WorldView;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

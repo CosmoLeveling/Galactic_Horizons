@@ -1,7 +1,6 @@
 package com.cosmo.galactic_horizons.block;
 
 import com.cosmo.galactic_horizons.GalacticHorizons;
-import com.cosmo.galactic_horizons.block.custom.DimensionalCrafter;
 import com.cosmo.galactic_horizons.block.custom.RealityStabilizer;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -13,12 +12,10 @@ import net.minecraft.util.Identifier;
 import org.quiltmc.qsl.block.extensions.api.QuiltBlockSettings;
 import org.quiltmc.qsl.item.setting.api.QuiltItemSettings;
 
-public class ModBlocks {
-	public static final Block DIMENSIONAL_CRAFTER = registerBlock("dimensional_crafter",
-		new DimensionalCrafter(QuiltBlockSettings.copyOf(Blocks.IRON_BLOCK)));
+public class GalacticHorizonsBlocks {
 	public static final Block ETERNIUM_ORE = registerBlock("eternium_ore",
 		new Block(QuiltBlockSettings.copyOf(Blocks.IRON_ORE)));
-	public static final Block REALITY_STABILIZER = registerBlock("reality_stabilizer",
+	public static final Block REALITY_CORE = registerBlock("reality_core",
 		new RealityStabilizer(QuiltBlockSettings.copyOf(Blocks.CONDUIT)));
 	public static final Block DEEPSLATE_ETERNIUM_ORE = registerBlock("deepslate_eternium_ore",
 		new Block(QuiltBlockSettings.copyOf(Blocks.DEEPSLATE_IRON_ORE)));
